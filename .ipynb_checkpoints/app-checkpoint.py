@@ -49,6 +49,17 @@ def home():
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     print("Server received request for 'Precipitation' page...")
+# Convert the query results to a dictionary using date as the key and prcp as the value.    
+    session = Session(engine)
+    
+    precip_last = session.query(Measurement.prcp, Measurement.date).\
+    filter(Measurement.date > '2016-08-23').\
+    order_by(Measurement.date).all()
+    
+    session.close()
+    
+    precip_dict = list(np.ravel(precip_last))
+    
     return jsonify(precip_dict)
 
 
