@@ -27,6 +27,8 @@ def home():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs"
+        f"/api/v1.0/<start>
+        f"/api/v1.0/<start>/<end>
     )
 
 
@@ -52,6 +54,20 @@ def stations():
 def stations():
     print("Server received request for 'tobs' page ...")
     return jsonify(tobs_dict)
+
+
+
+@app.route("/api/v1.0/<start>")
+def stations():
+    print("Server received request for 'start' page ...")
+    return jsonify(start_dict)
+
+
+
+@app.route("/api/v1.0/<start>/<end>")
+def stations():
+    print("Server received request for 'start/end' page ...")
+    return jsonify(start_end_dict)
 
 
 
