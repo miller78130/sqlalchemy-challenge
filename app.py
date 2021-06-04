@@ -12,6 +12,18 @@ from flask import Flask, jsonify
 
 #Bring in dictionaries here
 
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+
+Base = automap_base()
+
+Base.prepare(engine, reflect=True)
+
+Measurement = Base.classes.measurement
+Station = Base.classes.station
+
+
+
+
 
 # 2. Create an app, being sure to pass __name__
 app = Flask(__name__)
